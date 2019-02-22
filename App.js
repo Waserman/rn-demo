@@ -6,6 +6,7 @@ import Loader from './src/containers/Loader';
 import SignIn from './src/containers/SignIn';
 import MoviesList from './src/containers/MoviesList';
 import MovieDetails from './src/containers/MovieDetails';
+import HeaderLeft from './src/components/HeaderLeft';
 
 const authStack = createStackNavigator({ SignIn: SignIn });
 const appStack = createStackNavigator({ MoviesList: MoviesList, MovieDetails: MovieDetails });

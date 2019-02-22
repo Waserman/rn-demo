@@ -1,10 +1,13 @@
 import React from "react";
 import { StyleSheet, Text, View, TouchableHighlight } from "react-native";
-
+import HeaderLeft from '../components/HeaderLeft';
 export default class MoviesList extends React.Component {
 
   static navigationOptions = {
     title: 'Tweets',
+    headerLeft: (
+      <HeaderLeft />
+    )
   };
 
   viewTweet = () => {
