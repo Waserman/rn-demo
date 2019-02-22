@@ -1,21 +1,18 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import { StyleSheet, Text, View, SafeAreaView } from "react-native";
+import { createStackNavigator, createSwitchNavigator, createAppContainer } from 'react-navigation';
+import AuthGateway from './src/containers/AuthGateway';
+import Loader from './src/containers/Loader';
+import SignIn from './src/containers/SignIn';
+import MoviesList from './src/containers/MoviesList';
+import MovieDetails from './src/containers/MovieDetails';
 
-export default class App extends React.Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-      </View>
-    );
-  }
-}
+const authStack = createStackNavigator({ SignIn: SignIn });
+const appStack = createStackNavigator({ MoviesList: MoviesList, MovieDetails: MovieDetails });
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default createAppContainer(createSwitchNavigator({
+  auth: authStack,
+  app: appStack,
+  loader: Loader,
+  gateway: AuthGateway,
+}, { initialRouteName: 'gateway'}));
