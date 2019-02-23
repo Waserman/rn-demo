@@ -1,12 +1,12 @@
 import React from "react";
 import { StyleSheet, Text, View, AsyncStorage } from "react-native";
 
-export default class MovieDetails extends React.Component {
+export default class TweetDetails extends React.Component {
 
   render() {
     return (
       <View style={styles.container}>
-        <Text>MovieDetails</Text>
+        <Text>TweetDetails</Text>
       </View>
     );
   }

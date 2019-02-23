@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, View, TouchableHighlight } from "react-native";
 import HeaderLeft from '../components/HeaderLeft';
-export default class MoviesList extends React.Component {
+export default class TweetsList extends React.Component {
 
   static navigationOptions = {
     title: 'Tweets',
@@ -17,7 +17,7 @@ export default class MoviesList extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>MoviesList</Text>
+        <Text>TweetsList</Text>
         <TouchableHighlight onPress={this.viewTweet}>
           <Text>Click to view more</Text>
         </TouchableHighlight>
