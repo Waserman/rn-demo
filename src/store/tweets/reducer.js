@@ -6,7 +6,7 @@ import {
   TWEET_DOWNVOTE
 } from "./types";
 
-const loading = (state = false, actions) => {
+const loading = (state = false, action) => {
   switch (action.type) {
     case LOAD_TWEETS:
       return true;
@@ -17,12 +17,13 @@ const loading = (state = false, actions) => {
   }
 };
 
-const data = (state = null) => {
+const data = (state = null, action) => {
+  let tweet;
   switch (action.type) {
     case LOAD_TWEETS_SUCCESS:
       return action.tweets;
     case TWEET_UPVOTE:
-      const tweet = state[action.id];
+      tweet = state[action.id];
       return {
         ...state,
         [action.id]: {
@@ -31,7 +32,7 @@ const data = (state = null) => {
         }
       };
     case TWEET_DOWNVOTE:
-      const tweet = state[action.id];
+      tweet = state[action.id];
       return {
         ...state,
         [action.id]: {

@@ -1,8 +1,14 @@
 import React from "react";
+import { connect } from 'react-redux';
 import { StyleSheet, Text, View, TouchableHighlight } from "react-native";
 import HeaderLeft from '../components/HeaderLeft';
-export default class TweetsList extends React.Component {
+class TweetsList extends React.Component {
 
+  componentDidMount() {
+    const { tweets } = this.props;
+    // console.log(tweets);
+    
+  }
   static navigationOptions = {
     title: 'Tweets',
     headerLeft: (
@@ -11,7 +17,7 @@ export default class TweetsList extends React.Component {
   };
 
   viewTweet = () => {
-    this.props.navigation.navigate('MovieDetails');
+    this.props.navigation.navigate('TweetDetails');
   }
 
   render() {
@@ -34,3 +40,9 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   }
 });
+
+const mapStateToProps = state => ({
+  tweets: state.tweets.data,
+})
+
+export default connect(mapStateToProps)(TweetsList);

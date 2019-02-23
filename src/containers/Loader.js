@@ -1,12 +1,22 @@
 import React from "react";
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import { StyleSheet, Text, View } from "react-native";
+import { loadTweetsApi } from '../store/tweets/actions'
 
-export default class Loader extends React.Component {
+class Loader extends React.Component {
 
   componentDidMount() {
-    setTimeout(() => {
-      this.props.navigation.navigate('app');
-    }, 2500);
+    this.loadData();
+  }
+
+  loadData = () => {
+    const { loadTweets, navigation } = this.props;
+    loadTweets().then(res => {
+      navigation.navigate('app');
+    }).catch(err => {
+      navigation.navigate('auth');
+    });
   }
 
   render() {
@@ -17,6 +27,12 @@ export default class Loader extends React.Component {
     );
   }
 }
+const mapStateToProps = state => ({
+  loading: state.tweets.loading,
+})
+const mapDispatchToProps = dispatch => ({
+  loadTweets: bindActionCreators(loadTweetsApi, dispatch),
+});
 
 const styles = StyleSheet.create({
   container: {
@@ -26,3 +42,5 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   }
 });
+
+export default connect(mapStateToProps, mapDispatchToProps)(Loader);
