@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View, SafeAreaView } from "react-native";
+import { SafeAreaView } from "react-native";
 import { createStackNavigator, createSwitchNavigator, createAppContainer } from 'react-navigation';
 import AuthGateway from './src/containers/AuthGateway';
 import Loader from './src/containers/Loader';
@@ -11,9 +11,19 @@ import HeaderLeft from './src/components/HeaderLeft';
 const authStack = createStackNavigator({ SignIn: SignIn });
 const appStack = createStackNavigator({ MoviesList: MoviesList, MovieDetails: MovieDetails });
 
-export default createAppContainer(createSwitchNavigator({
+const AppContainer = createAppContainer(createSwitchNavigator({
   auth: authStack,
   app: appStack,
   loader: Loader,
   gateway: AuthGateway,
 }, { initialRouteName: 'gateway'}));
+
+export default class App extends React.Component {
+  render() {
+    return (
+      <SafeAreaView style={{ flex: 1 }}>
+        <AppContainer />
+      </SafeAreaView>
+    );
+  }
+}
