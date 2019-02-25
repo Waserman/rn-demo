@@ -2,7 +2,8 @@ import React from "react";
 import { connect } from 'react-redux';
 import { StyleSheet, Text, View, TouchableHighlight, FlatList } from "react-native";
 import { tweetsSelector } from '../store/tweets/selectors';
-import HeaderLeft from '../components/HeaderLeft';
+import HeaderLeft from '@components/HeaderLeft';
+import Card from '@components/Card';
 class TweetsList extends React.Component {
 
   componentDidMount() {
@@ -31,9 +32,7 @@ class TweetsList extends React.Component {
           data={this.props.tweets}
           keyExtractor={this.keyExtractor}
           renderItem={({item}) => (
-            <View style={{ margin: 20, borderBottomWidth: 1, borderBottomColor: "#ededed" }}>
-              <Text style={{ fontSize: 20 }}>{item.userName}</Text>
-            </View>
+            <Card tweet={item.tweet} avatar={item.avatar} fullName={`${item.userName} ${item.userLastName}`}/>
             )}
         />
       </View>
