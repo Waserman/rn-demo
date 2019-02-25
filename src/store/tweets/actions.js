@@ -16,7 +16,7 @@ const loadTweetsSuccess = tweets => ({ type: LOAD_TWEETS_SUCCESS, tweets });
 export const loadTweetsApi = () => dispatch => {
   dispatch(loadTweets());
   try {
-    const tweets = new Array(10).fill(null).map( e => {
+    const tweets = new Array(50).fill(null).map( e => {
       const userName = faker.name.firstName();
       const userLastName = faker.name.lastName();
       const avatar = faker.image.avatar();

@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from 'react-redux';
-import { StyleSheet, Text, View, TouchableHighlight } from "react-native";
+import { StyleSheet, Text, View, TouchableHighlight, FlatList } from "react-native";
+import { tweetsSelector } from '../store/tweets/selectors';
 import HeaderLeft from '../components/HeaderLeft';
 class TweetsList extends React.Component {
 
@@ -20,13 +21,21 @@ class TweetsList extends React.Component {
     this.props.navigation.navigate('TweetDetails');
   }
 
+  keyExtractor = (item, index) => item.id;
+
   render() {
     return (
       <View style={styles.container}>
-        <Text>TweetsList</Text>
-        <TouchableHighlight onPress={this.viewTweet}>
-          <Text>Click to view more</Text>
-        </TouchableHighlight>
+        <FlatList
+          style={{ flex: 1, width: "100%"}}
+          data={this.props.tweets}
+          keyExtractor={this.keyExtractor}
+          renderItem={({item}) => (
+            <View style={{ margin: 20, borderBottomWidth: 1, borderBottomColor: "#ededed" }}>
+              <Text style={{ fontSize: 20 }}>{item.userName}</Text>
+            </View>
+            )}
+        />
       </View>
     );
   }
@@ -42,7 +51,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => ({
-  tweets: state.tweets.data,
+  tweets: tweetsSelector(state),
 })
 
 export default connect(mapStateToProps)(TweetsList);
