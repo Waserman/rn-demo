@@ -5,22 +5,24 @@ import {
   View,
   TextInput,
   AsyncStorage,
-  Button,
+  Button
 } from "react-native";
 
 export default class SignIn extends React.Component {
-
+  static navigationOptions = {
+    header: null
+  };
   constructor() {
     super();
     this.state = {
-      email: '',
-      password: ''
+      email: "",
+      password: ""
     };
   }
 
-  onEmailChange = (email) => this.setState({email});
+  onEmailChange = email => this.setState({ email });
 
-  onPasswordChange = (password) => this.setState({password});
+  onPasswordChange = password => this.setState({ password });
 
   submitLogin = async () => {
     await AsyncStorage.setItem("k-token", "secret-token");
@@ -28,7 +30,6 @@ export default class SignIn extends React.Component {
   };
 
   render() {
-
     const { email, password } = this.state;
 
     const buttonEnabled = email.length && password.length;
@@ -41,17 +42,21 @@ export default class SignIn extends React.Component {
           placeholder="Email"
           textContentType="emailAddress"
           onChangeText={this.onEmailChange}
-          keyboardType="email-address" 
+          keyboardType="email-address"
         />
         <TextInput
-          style={styles.input} 
+          style={styles.input}
           placeholderTextColor="#000"
           placeholder="Password"
           textContentType="password"
           onChangeText={this.onPasswordChange}
           secureTextEntry={true}
         />
-        <Button title="Get Connected!" disabled={!buttonEnabled} onPress={this.submitLogin}/>
+        <Button
+          title="Get Connected!"
+          disabled={!buttonEnabled}
+          onPress={this.submitLogin}
+        />
       </View>
     );
   }
@@ -62,25 +67,24 @@ const styles = StyleSheet.create({
     flex: 1,
     alignSelf: "stretch",
     justifyContent: "center",
-    alignItems: 'center',
+    alignItems: "center",
     paddingRight: 8,
-    paddingLeft: 8,
+    paddingLeft: 8
   },
   caption: {
-    width: '100%',
-    textAlign: 'center',
-    color: '#000',
-    fontWeight: 'bold',
+    width: "100%",
+    textAlign: "center",
+    color: "#000",
+    fontWeight: "bold",
     fontSize: 30,
-    marginBottom: 20,
-    
+    marginBottom: 20
   },
   input: {
-    width: '100%',
+    width: "100%",
     fontSize: 18,
     borderBottomWidth: 0.5,
-    borderBottomColor: '#000',
+    borderBottomColor: "#000",
     padding: 5,
-    marginBottom: 15,
+    marginBottom: 15
   }
 });
