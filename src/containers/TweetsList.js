@@ -5,12 +5,6 @@ import { tweetsSelector } from '../store/tweets/selectors';
 import HeaderLeft from '@components/HeaderLeft';
 import Card from '@components/Card';
 class TweetsList extends React.Component {
-
-  componentDidMount() {
-    const { tweets } = this.props;
-    // console.log(tweets);
-    
-  }
   static navigationOptions = {
     title: 'Tweets',
     headerLeft: (
@@ -18,8 +12,10 @@ class TweetsList extends React.Component {
     )
   };
 
-  viewTweet = () => {
-    this.props.navigation.navigate('TweetDetails');
+  onItemPress = (id) => {
+    this.props.navigation.navigate('TweetDetails', {
+      tweetId: id
+    });
   }
 
   keyExtractor = (item, index) => item.id;
@@ -32,7 +28,7 @@ class TweetsList extends React.Component {
           data={this.props.tweets}
           keyExtractor={this.keyExtractor}
           renderItem={({item}) => (
-            <Card tweet={item.tweet} avatar={item.avatar} fullName={`${item.userName} ${item.userLastName}`}/>
+            <Card id={item.id} onPress={this.onItemPress} tweet={item.tweet} avatar={item.avatar} fullName={`${item.userName} ${item.userLastName}`}/>
             )}
         />
       </View>

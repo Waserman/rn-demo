@@ -1,17 +1,27 @@
 import React from "react";
-import { View, StyleSheet, Image, Text } from "react-native";
+import {
+  View,
+  StyleSheet,
+  Image,
+  Text,
+  TouchableHighlight
+} from "react-native";
 
-export default (Card = ({ avatar, fullName, tweet }) => {
+export default (Card = ({ avatar, fullName, tweet, onPress, id }) => {
   return (
-    <View style={styles.cardContainer} >
-      <View style={styles.imageContainer}>
-        <Image style={styles.image} source={{ uri: avatar }} />
+    <TouchableHighlight
+      onPress={() => onPress(id)}
+    >
+      <View style={styles.cardContainer}>
+        <View style={styles.imageContainer}>
+          <Image style={styles.image} source={{ uri: avatar }} />
+        </View>
+        <View>
+          <Text style={styles.name}>{fullName}</Text>
+          <Text style={styles.tweet}>{tweet}</Text>
+        </View>
       </View>
-      <View>
-        <Text style={styles.name}>{fullName}</Text>
-        <Text style={styles.tweet}>{tweet}</Text>
-      </View>
-    </View>
+    </TouchableHighlight>
   );
 });
 
@@ -23,7 +33,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     backgroundColor: "#fff",
     shadowColor: "#ededed",
-    shadowOffset: { width: 5, height: 7},
+    shadowOffset: { width: 5, height: 7 },
     shadowOpacity: 10,
     borderRadius: 10
   },
