@@ -27,7 +27,7 @@ $ npm install
 $ num run ios
 ```
 
-### Future ideas
+# Future ideas
 
 > Use styled-components
 write test with jest (unit-tests, snapshots and component-tests)
